@@ -8,6 +8,24 @@ export class Cell extends Component {
     borderStyle: ViewPropTypes.style
   };
 
+  static defaultProps = {
+    onLayout: () => true,
+  }
+
+  state = {
+    rendered: false,
+  }
+
+  onLayout = e => {
+    if (this.state.rendered) {
+      return;
+    }
+
+    this.props.onLayout(e)
+
+    this.setState({rendered: true});
+  };
+
   render() {
     const { data, width, height, flex, style, textStyle, borderStyle, ...props } = this.props;
     const textDom = React.isValidElement(data) ? (
@@ -23,6 +41,7 @@ export class Cell extends Component {
 
     return (
       <View
+        onLayout={this.onLayout}
         style={[
           {
             borderTopWidth,
