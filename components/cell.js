@@ -35,19 +35,11 @@ export class Cell extends Component {
         {data}
       </Text>
     );
-    const borderTopWidth = (borderStyle && borderStyle.borderWidth) || 0;
-    const borderRightWidth = borderTopWidth;
-    const borderColor = (borderStyle && borderStyle.borderColor) || '#000';
 
     return (
       <View
         onLayout={this.onLayout}
         style={[
-          {
-            borderTopWidth,
-            borderRightWidth,
-            borderColor
-          },
           styles.cell,
           width && { width },
           height && { height },
